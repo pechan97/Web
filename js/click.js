@@ -18,11 +18,13 @@ $(document).ready(function(){
                   switch(e.target.id){
                         case "proyecto":                   	
                               $("#dialog").css("display", "block");
+                              $("#nombre").focus();
                               $('#labelmsj').text("");
                               break;      
                         case "persona":
                              $("#dialog2").css("display", "block");
                              $('#labelmsj2').text("");
+                              $("#nombre2").focus();
                               break;
                     }
                    
