@@ -33,7 +33,7 @@ $(document).ready(function() {
     		$("#dialog").css('display','none');
         texto=$('#nombre').val();
         cont1++;
-		    listaProyectos.append('<div class="proyectos" id=del'+cont1+'><div class="cerrar"><button class="close" id=del' + cont1 +'>X</button></div><div class="titulos">'+texto+'</div></div>');		
+		    listaProyectos.append('<div class="proyectos" id=del'+cont1+'><div class="cerrar"><button class="close" id=del' + cont1 +'>X</button><button class="edit" id=edi' + cont1+'>=</button></div><div class=edi'+cont1+' id="titulos">'+texto+'</div></div>');		
         $('#nombre').val('');	
     	}   	
 	});
@@ -50,7 +50,7 @@ $(document).ready(function() {
          $("#dialog2").css('display','none');
         texto2=$('#nombre2').val();
         cont2++;
-		listaPersonas.append('<div class="personas" id=eli'+cont2+'><div class="cerrar"><button class="close" id=eli' + cont2+'>X</button></div><div class="titulos">'+texto2+'</div></div>');		
+		listaPersonas.append('<div class="personas" id=eli'+cont2+'><div class="cerrar"><button class="close" id=eli' + cont2+'>X</button><button class="edit" id=edi2' + cont2+'>=</button></div><div class=edi2'+cont2+' id="titulos">'+texto2+'</div></div>');		
 		cont++;
 		$('#nombre2').val('');	
 	 	}	
@@ -77,9 +77,54 @@ $(document).ready(function() {
       eliminarPro = $(this).attr('id');
       $('#'+eliminarPro).remove();
   }); 
+  //Eliminar Personas
   var eliminarPer;
    $('.listaPersonas').on('click', '.close', function(event){
       eliminarPer = $(this).attr('id');
       $('#'+eliminarPer).remove();
   }); 
+   var editarProyecto;
+  $('.prin').on('click', '.edit', function(event){
+      $("#dialog3").css('display','block');
+      $("#nombre3").focus();
+      editarProyecto = $(this).attr('id');
+     $('.guardar3').click(function(event) {  
+       $('#labelmsj').text("");
+       if ($('#nombre3').val().length <  1) {
+            $('#labelmsj3').text("Inserte el nombre del proyecto");
+            $("#nombre3").focus();
+        }else{
+         $("#dialog3").css('display','none');
+         texto=$('#nombre3').val();
+         $('.'+editarProyecto).html(texto);
+         $('#nombre3').val(''); 
+        }
+      });    
+  }); 
+     var editarPersona;
+  $('.prin').on('click', '.edit', function(event){
+      $("#dialog4").css('display','block');
+      $("#nombre4").focus();
+      editarPersona = $(this).attr('id');
+     $('.guardar4').click(function(event) {  
+       $('#labelmsj').text("");
+       if ($('#nombre4').val().length <  1) {
+            $('#labelmsj4').text("Inserte el nombre de la persona");
+            $("#nombre4").focus();
+        }else{
+         $("#dialog4").css('display','none');
+         texto=$('#nombre4').val();
+         $('.'+editarPersona).html(texto);
+         $('#nombre4').val(''); 
+        }
+      });    
+  });
+     //Desaparece el dialog si toca el boton cancelar3
+     $('#cancel3').click(function(event) {
+      $("#dialog3").css('display','none');
+     });
+      //Desaparece el dialog si toca el boton cancelar4
+     $('#cancel4').click(function(event) {
+      $("#dialog4").css('display','none');
+     }); 
 });
