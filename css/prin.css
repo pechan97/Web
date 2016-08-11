@@ -162,6 +162,7 @@ label {
 
 .proyectos{
       display: block;
+      position: absolute;
       height: 200px;
       width: 150px;
       border-radius: 2px;
@@ -171,8 +172,17 @@ label {
 }
 .personas{
       display: none;
-      height: 200px;
-      width: 150px;
+      height: 80px;
+      width: 50px;
+      border-radius: 2px;
+      border-style: groove;
+      border-color: #3B4C5B;
+      background-color: #082D50;
+}
+.personas2{
+      display: none;
+      height: 80px;
+      width: 50px;
       border-radius: 2px;
       border-style: groove;
       border-color: #3B4C5B;
@@ -182,8 +192,20 @@ label {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
+      height: 600px;
 }
 #titulos{
+      display: block;
+      height: 20px;
+      width: 50px;
+      border-radius: 2px;
+      border-color: #928B8B;
+      background-color: #928B8B;
+      text-align: center;
+      font-size: 20px;
+      color: aqua;
+}
+#titulospro{
       display: block;
       height: 30px;
       width: 150px;
@@ -221,16 +243,35 @@ color: white;
 font-size: 22px;
 }
 .cerrar{
-  width: 150px;
-  height: 20px;
+  width: 50px;
+  height: 15px;
    display: flex;
       justify-content: space-around;
 }
 .close{
   border-style: none;
+  width: 15px;
+  height: 15px;
 }
 .edit{
   border-style: none;
+}
+.cerrarpro{
+  width: 150px;
+  height: 20px;
+   display: flex;
+      justify-content: space-around;
+}
+.closepro{
+  border-style: none;
+}
+.editpro{
+  border-style: none;
+}
+.edit2{
+  border-style: none;
+  width: 15px;
+  height: 15px;
 }
 .close:hover{
   background-color: red;
@@ -238,6 +279,21 @@ font-size: 22px;
   border-style: none;
 }
 .edit:hover{
+  background-color: #05A618;
+  color: white;
+  border-style: none;
+}
+.closepro:hover{
+  background-color: red;
+  color: white;
+  border-style: none;
+}
+.editpro:hover{
+  background-color: #05A618;
+  color: white;
+  border-style: none;
+}
+.edit2:hover{
   background-color: #05A618;
   color: white;
   border-style: none;
@@ -266,4 +322,10 @@ font-size: 22px;
   display: none;
       color: red;
       font-size: 20px;
+}
+.acomoda{
+  height: 150px;
+  width: 150px;
+  display: flex;
+flex-wrap: wrap;
 }

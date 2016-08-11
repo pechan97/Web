@@ -2,6 +2,8 @@ var cont=0;
 var cont1=0;
 var cont2=0;
 var oID=0;
+var cont3=0;
+var boleano=true;
 $(document).ready(function() {
 
          //A la hora de dar click derecho se quita el dialog
@@ -33,13 +35,27 @@ $(document).ready(function() {
     		$("#dialog").css('display','none');
         texto=$('#nombre').val();
         cont1++;
-		    listaProyectos.append('<div class="proyectos" id=del'+cont1+'><div class="cerrar"><button class="close" id=del' + cont1 +'>X</button><button class="edit" id=edi' + cont1+'>=</button></div><div class=edi'+cont1+' id="titulos">'+texto+'</div></div>');		
+        var posx = Math.floor((Math.random() * 380) + 220); 
+        var posy = Math.floor((Math.random() * 875) + 25);  
+		    listaProyectos.append('<div class="proyectos" id=del'+cont1+' style="top: ' + posx + 'px; left: ' + posy + 'px;"><div class="cerrarpro"><button class="closepro" id=del' + cont1 +'>X</button><button class="editpro" id=edi' + cont1+'>=</button></div><div class=edi'+cont1+' id="titulospro">'+texto+'</div><div class="acomoda"></div></div>');
         $('#nombre').val('');	
-    	}   	
-	});
+        $( ".proyectos" ).draggable();
+          $( ".acomoda" ).droppable({             
+              drop: function(event, ui) { 
+                accept: '.personas div';
+                  ui.draggable.addClass('true');
+                  ui.draggable.toggleClass('.personas2');
+                  alert('hshshshs');
+                  ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+                  ui.draggable.draggable( 'option', 'revert', false );
+                  boleano=false;    
+              }
+    	    });   	
+	    }
+    });
 
     //Agrega una persona a la pantalla.
-	var listaPersonas = $('.listaPersonas')
+	var listaPersonas = $('.listaPersonas');
 	var texto2= '';	
 	 $('.guardar2').click(function(event) {
 	 	$('#labelmsj2').text("");
@@ -50,22 +66,42 @@ $(document).ready(function() {
          $("#dialog2").css('display','none');
         texto2=$('#nombre2').val();
         cont2++;
-		listaPersonas.append('<div class="personas" id=eli'+cont2+'><div class="cerrar"><button class="close" id=eli' + cont2+'>X</button><button class="edit" id=edi2' + cont2+'>=</button></div><div class=edi2'+cont2+' id="titulos">'+texto2+'</div></div>');		
+		listaPersonas.append('<div class="personas" id=eli'+cont2+'><div class="cerrar"><button class="close" id=eli' + cont2+'></button><button class="edit2" id=edi2' + cont2+'></button></div><div class=edi2'+cont2+' id="titulos">'+texto2+'</div></div>');		
 		cont++;
+    if (cont3>0) {
+      $('.personas').css('display','block');
+    }
+    if (boleano) {
+     $( ".personas" ).draggable({
+      containment: '.principal',
+      stack: '.personas div',
+      cursor: 'move',
+      revert: true
+     });
+   } else {
+    $( ".personas" ).draggable({
+      containment: '.principal',
+      stack: '.personas div',
+      cursor: 'move',
+      revert: true
+     });
+   }
 		$('#nombre2').val('');	
 	 	}	
 	});
 	  $('#mostrar').click(function(){
+      cont3++;
 	  	if (cont>0) {
 	  	     var stringA = $(this).text();
                  if (stringA==='Mostrar Personas'){
                    $('.listaPersonas').css({'height':'200px'});
                    $('.personas').css('display','block');
-                   $(this).text('Ocultar Personas');
+                   $(this).text('Ocultar Personas');                
                 } else if(stringA==='Ocultar Personas'){
-                   $('.listaPersonas').css({'height':'20px'});
+                   $('.listaPersonas').css({'justify-content':'20px'});
                    $('.personas').css('display','none');
                    $(this).text('Mostrar Personas');
+                   cont3=0;
                 }
         } else {
         	 $('#msj').css('display','block');
@@ -73,7 +109,7 @@ $(document).ready(function() {
 	 });
     //Eliminar Proyectos
      var eliminarPro;
-  $('.prin').on('click', '.close', function(event){
+  $('.prin').on('click', '.closepro', function(event){
       eliminarPro = $(this).attr('id');
       $('#'+eliminarPro).remove();
   }); 
@@ -82,9 +118,15 @@ $(document).ready(function() {
    $('.listaPersonas').on('click', '.close', function(event){
       eliminarPer = $(this).attr('id');
       $('#'+eliminarPer).remove();
-  }); 
+  });
+  var eliminarPermov;
+   $('.acomoda').on('click', '.close', function(event){
+      eliminarPermov = $(this).attr('id');
+      alert('eliminarPermov');
+      $('#'+eliminarPermov).remove();
+  });  
    var editarProyecto;
-  $('.prin').on('click', '.edit', function(event){
+  $('.prin').on('click', '.editpro', function(event){
       $("#dialog3").css('display','block');
       $("#nombre3").focus();
       editarProyecto = $(this).attr('id');
@@ -102,7 +144,7 @@ $(document).ready(function() {
       });    
   }); 
      var editarPersona;
-  $('.prin').on('click', '.edit', function(event){
+  $('.listaPersonas').on('click', '.edit2', function(event){
       $("#dialog4").css('display','block');
       $("#nombre4").focus();
       editarPersona = $(this).attr('id');
@@ -126,5 +168,5 @@ $(document).ready(function() {
       //Desaparece el dialog si toca el boton cancelar4
      $('#cancel4').click(function(event) {
       $("#dialog4").css('display','none');
-     }); 
+     });
 });
