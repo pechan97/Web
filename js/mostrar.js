@@ -3,7 +3,8 @@ var cont1=0;
 var cont2=0;
 var oID=0;
 var cont3=0;
-var boleano=true;
+var boleano=false;
+var eliperpro=false;
 $(document).ready(function() {
 
          //A la hora de dar click derecho se quita el dialog
@@ -40,15 +41,19 @@ $(document).ready(function() {
 		    listaProyectos.append('<div class="proyectos" id=del'+cont1+' style="top: ' + posx + 'px; left: ' + posy + 'px;"><div class="cerrarpro"><button class="closepro" id=del' + cont1 +'>X</button><button class="editpro" id=edi' + cont1+'>=</button></div><div class=edi'+cont1+' id="titulospro">'+texto+'</div><div class="acomoda"></div></div>');
         $('#nombre').val('');	
         $( ".proyectos" ).draggable();
-          $( ".acomoda" ).droppable({             
+          $( ".acomoda" ).droppable({ 
+             accept: '.personas',            
               drop: function(event, ui) { 
-                accept: '.personas div';
-                  ui.draggable.addClass('true');
-                  ui.draggable.toggleClass('.personas2');
-                  alert('hshshshs');
-                  ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-                  ui.draggable.draggable( 'option', 'revert', false );
-                  boleano=false;    
+                  boleano=true;
+                  eliperpro=true;
+                  $(ui.draggable).remove();
+                  var droppedDiv=$(ui.draggable).clone().css('display','block');;
+                  $(this).append(droppedDiv);
+                  $('.personas').draggable({helper:'clone',
+                    containment: '.principal',
+                    stack: '.personas div',
+                    cursor: 'move',
+                    revert: true});
               }
     	    });   	
 	    }
@@ -71,21 +76,7 @@ $(document).ready(function() {
     if (cont3>0) {
       $('.personas').css('display','block');
     }
-    if (boleano) {
-     $( ".personas" ).draggable({
-      containment: '.principal',
-      stack: '.personas div',
-      cursor: 'move',
-      revert: true
-     });
-   } else {
-    $( ".personas" ).draggable({
-      containment: '.principal',
-      stack: '.personas div',
-      cursor: 'move',
-      revert: true
-     });
-   }
+     $( ".personas" ).draggable({helper:'clone'});
 		$('#nombre2').val('');	
 	 	}	
 	});
@@ -107,6 +98,17 @@ $(document).ready(function() {
         	 $('#msj').css('display','block');
         }        
 	 });
+     if (!boleano) {
+      $( ".listaPersonas" ).droppable({ 
+             accept: '.personas',            
+              drop: function(event, ui) { 
+                  var droppedDiv2=$(ui.draggable).clone().css('display','block');
+                  $(this).append(droppedDiv2);  
+                  $(ui.draggable).remove();
+                  $( ".personas" ).draggable({helper:'clone'});         
+                }
+          });
+    }
     //Eliminar Proyectos
      var eliminarPro;
   $('.prin').on('click', '.closepro', function(event){
@@ -120,7 +122,7 @@ $(document).ready(function() {
       $('#'+eliminarPer).remove();
   });
   var eliminarPermov;
-   $('.acomoda').on('click', '.close', function(event){
+   $('.principal').on('click', '.close', function(event){
       eliminarPermov = $(this).attr('id');
       alert('eliminarPermov');
       $('#'+eliminarPermov).remove();
@@ -169,4 +171,5 @@ $(document).ready(function() {
      $('#cancel4').click(function(event) {
       $("#dialog4").css('display','none');
      });
+   
 });

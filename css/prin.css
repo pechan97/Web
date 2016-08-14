@@ -179,15 +179,6 @@ label {
       border-color: #3B4C5B;
       background-color: #082D50;
 }
-.personas2{
-      display: none;
-      height: 80px;
-      width: 50px;
-      border-radius: 2px;
-      border-style: groove;
-      border-color: #3B4C5B;
-      background-color: #082D50;
-}
 .prin{
       display: flex;
       justify-content: space-around;
