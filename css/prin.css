@@ -14,7 +14,7 @@ li{
       width:250px;
       position:absolute;      
       border:1px solid black;
-       
+      z-index: 100;  
       -moz-box-shadow: 0 0 5px #888;
       -webkit-box-shadow: 0 0 5px#888;
       box-shadow: 0 0 5px #888;
@@ -163,13 +163,23 @@ label {
 .proyectos{
       display: block;
       position: absolute;
-      height: 200px;
-      width: 150px;
+      height: 220px;
+      width: 168px ;
       border-radius: 2px;
       border-style: groove;
       border-color: #1F1E1E;
-      background-color: #646161;      
+      background-color: #646161;
+      cursor: move;
+      top: 120px;      
 }
+.proyectos2{
+      background: #FECA40;
+}
+.proyectos .ui-selecting {}
+.proyectos .ui-selected {}
+.proyectos > div {position: absolute;}
+.ui-selectable-helper {position: absolute; z-index: 100; border:1px dotted black;}
+
 .personas{
       display: none;
       height: 80px;
@@ -178,6 +188,14 @@ label {
       border-style: groove;
       border-color: #3B4C5B;
       background-color: #082D50;
+}
+.personas2{
+      height: 80px;
+      width: 50px;
+      border-radius: 2px;
+      border-style: groove;
+      border-color: #3B4C5B;
+      background-color: red;
 }
 .prin{
       display: flex;
@@ -199,10 +217,9 @@ label {
 #titulospro{
       display: block;
       height: 30px;
-      width: 150px;
+      width: 168px;
       border-radius: 2px;
       border-color: #928B8B;
-      background-color: #928B8B;
       text-align: center;
       font-size: 20px;
       color: aqua;
@@ -248,7 +265,7 @@ font-size: 22px;
   border-style: none;
 }
 .cerrarpro{
-  width: 150px;
+  width: 168px;
   height: 20px;
    display: flex;
       justify-content: space-around;
@@ -315,8 +332,8 @@ font-size: 22px;
       font-size: 20px;
 }
 .acomoda{
-  height: 150px;
-  width: 150px;
+  height: 170px;
+  width: 168px;
   display: flex;
 flex-wrap: wrap;
 }

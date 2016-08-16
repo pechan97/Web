@@ -39,19 +39,21 @@ $(document).ready(function() {
         var posx = Math.floor((Math.random() * 380) + 220); 
         var posy = Math.floor((Math.random() * 875) + 25);  
 		    listaProyectos.append('<div class="proyectos" id=del'+cont1+' style="top: ' + posx + 'px; left: ' + posy + 'px;"><div class="cerrarpro"><button class="closepro" id=del' + cont1 +'>X</button><button class="editpro" id=edi' + cont1+'>=</button></div><div class=edi'+cont1+' id="titulospro">'+texto+'</div><div class="acomoda"></div></div>');
-        $('#nombre').val('');	
-        $( ".proyectos" ).draggable();
-          $( ".acomoda" ).droppable({ 
+        $('#nombre').val('');
+        movergrupo();	    
+        $( ".acomoda" ).droppable({ 
              accept: '.personas',            
               drop: function(event, ui) { 
                   boleano=true;
                   eliperpro=true;
+                  $(ui.draggable).removeClass();
+                  $(ui.draggable).toggleClass("personas2")
                   $(ui.draggable).remove();
                   var droppedDiv=$(ui.draggable).clone().css('display','block');;
                   $(this).append(droppedDiv);
-                  $('.personas').draggable({helper:'clone',
+                  $('.personas2').draggable({helper:'clone',
                     containment: '.principal',
-                    stack: '.personas div',
+                    stack: '.personas2 div',
                     cursor: 'move',
                     revert: true});
               }
@@ -100,12 +102,19 @@ $(document).ready(function() {
 	 });
      if (!boleano) {
       $( ".listaPersonas" ).droppable({ 
-             accept: '.personas',            
+             accept: '.personas2',            
               drop: function(event, ui) { 
+                 $(ui.draggable).removeClass();
+                  $(ui.draggable).toggleClass("personas")
                   var droppedDiv2=$(ui.draggable).clone().css('display','block');
                   $(this).append(droppedDiv2);  
                   $(ui.draggable).remove();
-                  $( ".personas" ).draggable({helper:'clone'});         
+                  $( ".personas2" ).draggable({helper:'clone'});
+                  $('.personas').draggable({helper:'clone',
+                    containment: '.principal',
+                    stack: '.personas div',
+                    cursor: 'move',
+                    revert: true});         
                 }
           });
     }
@@ -117,16 +126,10 @@ $(document).ready(function() {
   }); 
   //Eliminar Personas
   var eliminarPer;
-   $('.listaPersonas').on('click', '.close', function(event){
+   $('.listaPersonas , .principal').on('click', '.close', function(event){
       eliminarPer = $(this).attr('id');
       $('#'+eliminarPer).remove();
   });
-  var eliminarPermov;
-   $('.principal').on('click', '.close', function(event){
-      eliminarPermov = $(this).attr('id');
-      alert('eliminarPermov');
-      $('#'+eliminarPermov).remove();
-  });  
    var editarProyecto;
   $('.prin').on('click', '.editpro', function(event){
       $("#dialog3").css('display','block');
@@ -146,7 +149,7 @@ $(document).ready(function() {
       });    
   }); 
      var editarPersona;
-  $('.listaPersonas').on('click', '.edit2', function(event){
+  $('.listaPersonas, .principal').on('click', '.edit2', function(event){
       $("#dialog4").css('display','block');
       $("#nombre4").focus();
       editarPersona = $(this).attr('id');
@@ -163,6 +166,7 @@ $(document).ready(function() {
         }
       });    
   });
+
      //Desaparece el dialog si toca el boton cancelar3
      $('#cancel3').click(function(event) {
       $("#dialog3").css('display','none');
