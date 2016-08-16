@@ -1,4 +1,5 @@
 var selected = $([]), offset = {top:0, left:0}; 
+ //función que permite mover en grupo
  function movergrupo() {
 $( ".proyectos" ).draggable({
     start: function(event, ui) {
@@ -26,21 +27,18 @@ $( ".proyectos" ).draggable({
 }
 
 
-
+//permite seleccionar lo que se quiere mover en grupo
 $( "#proyectos" ).selectable();
 $( "#proyectos" ).on("click", ".proyectos",function(e){
     if (e.ctrlKey == false) {
-        // if command key is pressed don't deselect existing elements
         $( "#proyectos" ).removeClass("ui-selected");
         $(this).addClass("ui-selecting");
     }
     else {
         if ($(this).hasClass("ui-selected")) {
-            // remove selected class from element if already selected
             $(this).removeClass("ui-selected");
         }
         else {
-            // add selecting class if not
             $(this).addClass("ui-selecting");
         }
     }

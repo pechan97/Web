@@ -5,6 +5,7 @@ var oID=0;
 var cont3=0;
 var boleano=false;
 var eliperpro=false;
+var mov =false;
 $(document).ready(function() {
 
          //A la hora de dar click derecho se quita el dialog
@@ -40,7 +41,8 @@ $(document).ready(function() {
         var posy = Math.floor((Math.random() * 875) + 25);  
 		    listaProyectos.append('<div class="proyectos" id=del'+cont1+' style="top: ' + posx + 'px; left: ' + posy + 'px;"><div class="cerrarpro"><button class="closepro" id=del' + cont1 +'>X</button><button class="editpro" id=edi' + cont1+'>=</button></div><div class=edi'+cont1+' id="titulospro">'+texto+'</div><div class="acomoda"></div></div>');
         $('#nombre').val('');
-        movergrupo();	    
+        movergrupo();
+        //acepta personas al proyecto
         $( ".acomoda" ).droppable({ 
              accept: '.personas',            
               drop: function(event, ui) { 
@@ -75,6 +77,7 @@ $(document).ready(function() {
         cont2++;
 		listaPersonas.append('<div class="personas" id=eli'+cont2+'><div class="cerrar"><button class="close" id=eli' + cont2+'></button><button class="edit2" id=edi2' + cont2+'></button></div><div class=edi2'+cont2+' id="titulos">'+texto2+'</div></div>');		
 		cont++;
+    $('#mostrar').removeAttr('disabled');
     if (cont3>0) {
       $('.personas').css('display','block');
     }
@@ -82,24 +85,29 @@ $(document).ready(function() {
 		$('#nombre2').val('');	
 	 	}	
 	});
+   //muestra personas a la hora de dar click al botton mostrar
 	  $('#mostrar').click(function(){
       cont3++;
 	  	if (cont>0) {
 	  	     var stringA = $(this).text();
                  if (stringA==='Mostrar Personas'){
-                   $('.listaPersonas').css({'height':'200px'});
+                   mov =true;
+                   $('.listaPersonas').css({'height':'100px'});
                    $('.personas').css('display','block');
                    $(this).text('Ocultar Personas');                
                 } else if(stringA==='Ocultar Personas'){
                    $('.listaPersonas').css({'justify-content':'20px'});
                    $('.personas').css('display','none');
+                   $('.listaPersonas').css({'height':'50px'});
                    $(this).text('Mostrar Personas');
                    cont3=0;
+                   mov =false;
                 }
         } else {
         	 $('#msj').css('display','block');
         }        
 	 });
+    //devuelve las personas al grupo de personas si se suelta donde se debe
      if (!boleano) {
       $( ".listaPersonas" ).droppable({ 
              accept: '.personas2',            
@@ -114,13 +122,18 @@ $(document).ready(function() {
                     containment: '.principal',
                     stack: '.personas div',
                     cursor: 'move',
-                    revert: true});         
+                    revert: true});
+                  if (mov) {
+                    $('.personas').css('display','block'); 
+                  } else {
+                    $('.personas').css('display','none'); 
+                  }        
                 }
           });
     }
     //Eliminar Proyectos
      var eliminarPro;
-  $('.prin').on('click', '.closepro', function(event){
+  $('.prin').on('click', '.closepro', function(event){      
       eliminarPro = $(this).attr('id');
       $('#'+eliminarPro).remove();
   }); 
@@ -130,6 +143,7 @@ $(document).ready(function() {
       eliminarPer = $(this).attr('id');
       $('#'+eliminarPer).remove();
   });
+   //Edita proyecto
    var editarProyecto;
   $('.prin').on('click', '.editpro', function(event){
       $("#dialog3").css('display','block');
@@ -148,6 +162,7 @@ $(document).ready(function() {
         }
       });    
   }); 
+  //edita personas
      var editarPersona;
   $('.listaPersonas, .principal').on('click', '.edit2', function(event){
       $("#dialog4").css('display','block');
