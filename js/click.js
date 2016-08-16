@@ -14,7 +14,7 @@ $(document).ready(function(){
             });        
             //controlamos los botones del menú
             $("#menu").click(function(e){           
-                  // El switch utiliza los IDs de los <li> del menú
+                  // El switch utiliza los ids de los <li> del menú
                   switch(e.target.id){
                         case "proyecto":                   	
                               $("#dialog").css("display", "block");

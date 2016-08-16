@@ -1,5 +1,5 @@
 body{
-  background-color: #1F599F;
+  background-color: #4E7686;
 }
 ul{
       list-style: none;
@@ -32,13 +32,14 @@ a.selected {
 }
 
 #dialog {
-  background-color:#FFFFFF;
-  border:1px solid #999999;
+  background-color:#5C7A85;
+  border:3px solid #999999;
   display:none;
   margin-top: 15px;
   position:absolute;
   width:394px;
   z-index:50;
+  color:white;
   padding: 25px 25px 20px;
   text-align: center;
   border-color: #D4D4D4;
@@ -50,13 +51,14 @@ a.selected {
             margin-left:-200px;
 }
 #dialog2 {
-  background-color:#FFFFFF;
-  border:1px solid #999999;
+  background-color:#5C7A85;
+  border:3px solid #999999;
   display:none;
   margin-top: 15px;
   position:absolute;
   width:394px;
   z-index:50;
+  color:white;
   padding: 25px 25px 20px;
   text-align: center;
   border-color: #D4D4D4;
@@ -68,13 +70,14 @@ a.selected {
             margin-left:-200px;
 }
 #dialog3 {
-  background-color:#FFFFFF;
-  border:1px solid #999999;
+  background-color:#5C7A85;
+  border:3px solid #999999;
   display:none;
   margin-top: 15px;
   position:absolute;
   width:394px;
   z-index:50;
+  color:white;
   padding: 25px 25px 20px;
   text-align: center;
   border-color: #D4D4D4;
@@ -86,13 +89,14 @@ a.selected {
             margin-left:-200px;
 }
 #dialog4 {
-  background-color:#FFFFFF;
-  border:1px solid #999999;
+  background-color:#5C7A85;
+  border:3px solid #999999;
   display:none;
   margin-top: 15px;
   position:absolute;
   width:394px;
   z-index:50;
+  color:white;
   padding: 25px 25px 20px;
   text-align: center;
   border-color: #D4D4D4;
@@ -112,17 +116,26 @@ label {
 #nombre{
    border-radius: 1px;
    border-style: double; 
-   border-color: #D4D4D4;  
+   border-color: #D4D4D4; 
+   font-size: 15px; 
+}
+#nombre2{
+   border-radius: 1px;
+   border-style: double; 
+   border-color: #D4D4D4; 
+   font-size: 15px; 
 }
 #nombre3{
    border-radius: 1px;
    border-style: double; 
-   border-color: #D4D4D4;  
+   border-color: #D4D4D4; 
+   font-size: 15px;  
 }
 #nombre4{
    border-radius: 1px;
    border-style: double; 
-   border-color: #D4D4D4;  
+   border-color: #D4D4D4;
+   font-size: 15px;   
 }
 #save{
       height: 30px;
@@ -168,7 +181,7 @@ label {
       position: absolute;
       height: 220px;
       width: 168px ;
-      border-radius: 2px;
+      border-radius: 3px;
       border-style: groove;
       border-color: #1F1E1E;
       background-color: #646161;
@@ -178,8 +191,8 @@ label {
 .proyectos2{
       background: #FECA40;
 }
-#proyectos .ui-selecting {background: #646161;}
-#proyectos .ui-selected {background: #646161; color: white;}
+#proyectos .ui-selecting {}
+#proyectos .ui-selected {}
 #proyectos > div {position: absolute;}
 #ui-selectable-helper {position: absolute; z-index: 100; border:1px dotted black;}
 
@@ -215,7 +228,7 @@ label {
       border-color: #928B8B;
       background-color: #928B8B;
       text-align: center;
-      font-size: 20px;
+      font-size: 12px;
       color: aqua;
 }
 #titulospro{
@@ -326,6 +339,11 @@ font-size: 22px;
       background-color: #05A618;
       border-color: #05A618;
       border-style: none;
+}
+#mostrar:hover{
+  font-size: 18px;
+  height: 43px;
+  width: 88px;
 }
 .butonMostrar{
   text-align: center
